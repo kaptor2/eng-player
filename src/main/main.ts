@@ -21,7 +21,7 @@ function createWindow() {
   mainWindow.webContents.openDevTools();
 
   if (app.isPackaged) {
-    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html')); // ← убрал лишний ../
+    mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'));
   } else {
     mainWindow.loadURL('http://localhost:5173');
   }
