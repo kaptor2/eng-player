@@ -1,4 +1,3 @@
-// src/main/main.ts
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
 import 'reflect-metadata';
