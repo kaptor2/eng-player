@@ -1,5 +1,6 @@
+/* eslint-disable indent */
 import { ENTITY_NAMES } from '@shared/registry';
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity({ name: ENTITY_NAMES.desk })
 export class DeskEntity {

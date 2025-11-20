@@ -1,0 +1,112 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "import",
+    "simple-import-sort",
+    "prettier",
+    "@stylexjs"
+  ],
+  "rules": {
+    "@stylexjs/valid-styles": "error",
+    "@stylexjs/no-unused": "error",
+    "@stylexjs/valid-shorthands": "warn",
+    "@stylexjs/sort-keys": "warn",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "camelcase": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [
+            "^react$"
+          ],
+          [
+            "^[^\\./]"
+          ],
+          [
+            ""
+          ]
+        ]
+      }
+    ],
+    "import/no-extraneous-dependencies": "off",
+    "simple-import-sort/exports": "error",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "react/display-name": "off",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "no-return-await": "off",
+    "import/no-duplicates": "error",
+    "no-underscore-dangle": "off",
+    "sort-imports": "off",
+    "no-useless-constructor": "off",
+    "import/order": "off",
+    "import/no-cycle": "off",
+    "no-shadow": "off",
+    "no-console": "off",
+    "no-restricted-syntax": "off",
+    "consistent-return": "off",
+    "no-useless-escape": "off",
+    "no-param-reassign": "off",
+    "no-use-before-define": "off",
+    "no-empty-function": "off",
+    "prettier/prettier": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/rules-of-hooks": "off",
+    "react/jsx-wrap-multilines": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/prop-types": "off",
+    "react/require-default-props": "off",
+    "react/no-array-index-key": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/button-has-type": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".tsx"
+        ]
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
+  }
+}

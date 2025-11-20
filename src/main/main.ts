@@ -1,8 +1,9 @@
+import 'reflect-metadata';
 import { app, BrowserWindow } from 'electron';
 import path from 'path';
-import 'reflect-metadata';
-import { AppDataSource } from './db';
+
 import { DeskController } from './controllers';
+import { AppDataSource } from './db';
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -12,9 +13,9 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
     },
-    show: false
+    show: false,
   });
 
   mainWindow.webContents.openDevTools();
@@ -32,10 +33,11 @@ function createWindow() {
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
-};
+}
 
 app.whenReady().then(async () => {
   await AppDataSource.initialize();
+  // eslint-disable-next-line no-new
   new DeskController();
   createWindow();
 });

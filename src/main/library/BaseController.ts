@@ -1,9 +1,10 @@
-import { EntityTarget, ObjectLiteral, Repository } from "typeorm";
-import { ipcMain } from "electron";
-import { AppDataSource } from "@main/db";
+import { AppDataSource } from '@main/db';
+import { ipcMain } from 'electron';
+import { EntityTarget, ObjectLiteral, Repository } from 'typeorm';
 
 export abstract class BaseController<TEntity extends ObjectLiteral> {
   protected repo: Repository<TEntity>;
+
   protected name: string;
 
   constructor(entity: EntityTarget<TEntity>) {
@@ -32,18 +33,24 @@ export abstract class BaseController<TEntity extends ObjectLiteral> {
 
     while (proto && proto !== Object.prototype) {
       Object.getOwnPropertyNames(proto)
-        .filter(name => name !== "constructor" && typeof (this as any)[name] === "function" && name !== "initIPC")
-        .forEach(name => methods.add(name));
+        .filter((name) => {
+          const isNotConstructor = name !== 'constructor';
+          const isFunction = typeof (this as never)[name] === 'function';
+          const isNotInit = name !== 'initIPC';
+
+          return isNotConstructor && isFunction && isNotInit;
+        })
+        .forEach((name) => methods.add(name));
 
       proto = Object.getPrototypeOf(proto);
     }
 
-    methods.forEach(name => {
+    methods.forEach((name) => {
       const channel = `${this.name}:${name}`;
 
       ipcMain.removeHandler(channel);
 
-      const method = (this as any)[name] as (...args: unknown[]) => Promise<unknown>;
+      const method = (this as never)[name] as (...args: unknown[]) => Promise<unknown>;
 
       ipcMain.handle(channel, async (_event, ...args: unknown[]) => {
         console.log('Handler invoked:', channel);
@@ -51,4 +58,4 @@ export abstract class BaseController<TEntity extends ObjectLiteral> {
       });
     });
   }
-};
+}
