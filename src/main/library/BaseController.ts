@@ -40,7 +40,9 @@ export abstract class BaseController<TEntity extends ObjectLiteral> {
 
           return isNotConstructor && isFunction && isNotInit;
         })
-        .forEach((name) => methods.add(name));
+        .forEach((name) => {
+          return methods.add(name);
+        });
 
       proto = Object.getPrototypeOf(proto);
     }
