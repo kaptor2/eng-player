@@ -1,9 +1,10 @@
 import 'reflect-metadata';
 import { app, BrowserWindow } from 'electron';
+import fs from 'fs';
 import path from 'path';
 
 import { DeskController } from './controllers';
-import { AppDataSource } from './db';
+import { DBService, ttsService } from './services';
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -36,8 +37,14 @@ function createWindow() {
 }
 
 app.whenReady().then(async () => {
-  await AppDataSource.initialize();
-  // eslint-disable-next-line no-new
+  await DBService.initialize();
+  await ttsService.init();
+
+  await ttsService.init();
+  const audio = await ttsService.makeAudio('en', 'and everyone else is tortured for eternity?');
+  fs.writeFileSync('test.wav', audio);
+  console.log('Audio saved to test.wav');
+
   new DeskController();
   createWindow();
 });

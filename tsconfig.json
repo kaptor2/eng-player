@@ -1,16 +1,17 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "commonjs",
+    "module": "Node16",
     "jsx": "react-jsx",
     "strict": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node16",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "outDir": "dist",
     "baseUrl": ".",
+    "allowJs": true,
     "paths": {
       "@renderer/*": [
         "src/renderer/*"
@@ -24,7 +25,8 @@
     }
   },
   "include": [
-    "src"
+    "src",
+    "src/**/*.mjs"
   ],
   "tsc-alias": {
     "resolveFullPaths": true

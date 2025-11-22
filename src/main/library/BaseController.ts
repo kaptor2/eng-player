@@ -1,4 +1,4 @@
-import { AppDataSource } from '@main/db';
+import { DBService } from '@main/services';
 import { ipcMain } from 'electron';
 import { EntityTarget, ObjectLiteral, Repository } from 'typeorm';
 
@@ -8,7 +8,7 @@ export abstract class BaseController<TEntity extends ObjectLiteral> {
   protected name: string;
 
   constructor(entity: EntityTarget<TEntity>) {
-    this.repo = AppDataSource.getRepository(entity);
+    this.repo = DBService.getRepository(entity);
     this.name = this.repo.metadata.tableName;
     console.log('Controller initialized:', this.name);
     this.initIPC();
